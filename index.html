@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Missão Dubai 2026 | Viagem dos Campeões (36 Vencedores)</title>
+  <meta name="description" content="Hub oficial de gestão e experiência da viagem de incentivo para 36 campeões de vendas em Dubai. Logística inteligente, roteiro de 5 dias e IA de apoio para a organização.">
+
+  <!-- Favicon com símbolo de avião e estrela -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dubai: {
+              navy: '#070D1E',
+              deep: '#0F172A',
+              card: '#131D36',
+              gold: '#D4AF37',
+              goldlight: '#FEF08A',
+              cyan: '#38BDF8'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons & Canvas Confetti -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="text-slate-100 flex flex-col min-h-screen selection:bg-sky-500 selection:text-white">
+
+  <!-- ==========================================
+       TOP BAR: RELÓGIO PROEMINENTE DE DUBAI, VOOS E CLIMA
+       ========================================== -->
+  <div class="bg-slate-950/95 border-b border-amber-500/30 text-xs py-2.5 px-4 backdrop-blur-md sticky top-0 z-50 shadow-lg">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      
+      <!-- Rota & Companhias -->
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-sky-500/20 to-blue-600/20 text-sky-300 font-semibold border border-sky-500/40">
+          <i data-lucide="plane-takeoff" class="w-3.5 h-3.5 text-sky-400"></i> Gol G3 1285 + Emirates EK 262
+        </span>
+        <span class="text-slate-400 font-mono hidden sm:inline text-[11px]">
+          Florianópolis (FLN) ➔ GRU ➔ Dubai (DXB)
+        </span>
+      </div>
+
+      <!-- RELÓGIO PROEMINENTE DE DUBAI NO TOPO -->
+      <div class="flex items-center gap-3 bg-gradient-to-r from-amber-950/40 via-slate-900 to-amber-950/40 py-1 px-4 rounded-xl border border-amber-500/50 dubai-clock-glow">
+        <div class="flex items-center gap-1.5">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500"></span>
+          </span>
+          <span class="text-amber-300 font-bold uppercase tracking-wider text-[11px] flex items-center gap-1">
+            🇦🇪 Horário Local em Dubai:
+          </span>
+        </div>
+        <span id="prominent-clock-dubai" class="text-base sm:text-lg font-mono font-extrabold text-amber-400 tracking-widest">
+          --:--:--
+        </span>
+        <span class="hidden md:inline-block text-[10px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-200 border border-amber-500/30 font-semibold font-mono">
+          UTC+4 (+7h de Floripa)
+        </span>
+      </div>
+
+      <!-- Relógio de Florianópolis & Clima -->
+      <div class="flex items-center gap-4 text-slate-300 font-mono text-xs">
+        <div class="hidden lg:flex items-center gap-1.5" title="Horário de Florianópolis (GMT-3)">
+          <i data-lucide="clock" class="w-3.5 h-3.5 text-sky-400"></i>
+          <span class="text-slate-400">Floripa:</span>
+          <span id="clock-floripa" class="font-bold text-slate-200">--:--:--</span>
+        </div>
+        <div class="h-3 w-px bg-slate-800 hidden lg:block"></div>
+        <div class="flex items-center gap-1.5 text-amber-200 text-xs">
+          <i data-lucide="sun" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>Dubai: 29°C</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================
+       HERO PRINCIPAL & CONTAGEM REGRESSIVA
+       ========================================== -->
+  <header class="relative pt-10 pb-8 px-4 border-b border-slate-800/60 overflow-hidden">
+    <div class="max-w-7xl mx-auto relative z-10">
+      
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+        
+        <!-- Título e Contexto -->
+        <div class="max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold mb-3">
+            <i data-lucide="award" class="w-4 h-4 text-amber-400"></i>
+            CONVENÇÃO DE VENDAS & VIAGEM DE INCENTIVO
+          </div>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold font-serif-luxury text-white tracking-tight leading-tight">
+            Missão Dubai: <span class="text-gradient-gold">Viagem dos Campeões</span>
+          </h1>
+          <p class="text-slate-300 text-sm sm:text-base mt-2 leading-relaxed">
+            Hub de gestão operacional e experiência dos <strong class="text-sky-300">36 melhores vendedores</strong>. 
+            7 dias de jornada, 5 dias de pura imersão nos Emirados Árabes e apoio em tempo real com Inteligência Artificial.
+          </p>
+
+          <!-- Badges de Informação Rápida -->
+          <div class="flex flex-wrap items-center gap-2.5 mt-4 text-xs">
+            <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 flex items-center gap-1.5">
+              <i data-lucide="users" class="w-3.5 h-3.5 text-sky-400"></i> 36 Campeões Confirmados
+            </span>
+            <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 flex items-center gap-1.5">
+              <i data-lucide="bus" class="w-3.5 h-3.5 text-sky-400"></i> 3 Vans Executivas VIP
+            </span>
+            <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 flex items-center gap-1.5">
+              <i data-lucide="building-2" class="w-3.5 h-3.5 text-amber-400"></i> Address Sky View Hotel
+            </span>
+            <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 flex items-center gap-1.5">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-400"></i> Suporte com IA Integrado
+            </span>
+          </div>
+        </div>
+
+        <!-- Card da Contagem Regressiva -->
+        <div class="glass-panel-gold rounded-2xl p-6 text-center shrink-0 border border-amber-500/40 shadow-2xl relative group">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 text-[10px] font-extrabold uppercase tracking-widest shadow-md">
+            Embarque na Próxima Semana
+          </div>
+
+          <p class="text-xs text-amber-200/80 font-medium mb-3 mt-1">Tempo até o embarque no Aeroporto de Floripa:</p>
+
+          <div id="trip-countdown" class="grid grid-cols-4 gap-2 sm:gap-3 text-center">
+            <div class="bg-slate-900/90 rounded-xl p-2.5 sm:p-3 border border-slate-800">
+              <span id="count-days" class="text-2xl sm:text-3xl font-extrabold text-amber-400 font-mono">06</span>
+              <span class="text-[10px] text-slate-400 block uppercase font-semibold">Dias</span>
+            </div>
+            <div class="bg-slate-900/90 rounded-xl p-2.5 sm:p-3 border border-slate-800">
+              <span id="count-hours" class="text-2xl sm:text-3xl font-extrabold text-white font-mono">18</span>
+              <span class="text-[10px] text-slate-400 block uppercase font-semibold">Horas</span>
+            </div>
+            <div class="bg-slate-900/90 rounded-xl p-2.5 sm:p-3 border border-slate-800">
+              <span id="count-mins" class="text-2xl sm:text-3xl font-extrabold text-white font-mono">45</span>
+              <span class="text-[10px] text-slate-400 block uppercase font-semibold">Min</span>
+            </div>
+            <div class="bg-slate-900/90 rounded-xl p-2.5 sm:p-3 border border-slate-800">
+              <span id="count-secs" class="text-2xl sm:text-3xl font-extrabold text-sky-400 font-mono">20</span>
+              <span class="text-[10px] text-slate-400 block uppercase font-semibold">Seg</span>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-300">
+            <span class="flex items-center gap-1 text-emerald-400">
+              <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> Voos & Hotéis Confirmados
+            </span>
+            <button onclick="triggerWelcomeConfetti()" class="text-amber-400 hover:text-amber-300 font-semibold flex items-center gap-1 transition-colors">
+              <i data-lucide="party-popper" class="w-3.5 h-3.5"></i> Celebrar!
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==========================================
+       BARRA DE NAVEGAÇÃO PRINCIPAL (TABS)
+       ========================================== -->
+  <nav class="sticky top-[45px] z-40 bg-slate-900/95 border-b border-slate-800 backdrop-blur-md px-4 no-print">
+    <div class="max-w-7xl mx-auto flex items-center gap-1 sm:gap-2 overflow-x-auto py-2.5 scrollbar-none">
+      
+      <button data-tab-target="tab-itinerary" class="tab-link active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 whitespace-nowrap text-slate-300 border border-transparent">
+        <i data-lucide="calendar" class="w-4 h-4 text-sky-400"></i>
+        <span>Calendário & Roteiro das Atividades</span>
+      </button>
+
+      <button data-tab-target="tab-organizer" class="tab-link px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 whitespace-nowrap text-slate-300 border border-transparent">
+        <div class="relative">
+          <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i>
+          <span class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-amber-400 pulse-badge"></span>
+        </div>
+        <span>Painel da Organizadora (IA)</span>
+      </button>
+
+      <button data-tab-target="tab-guide" class="tab-link px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 whitespace-nowrap text-slate-300 border border-transparent">
+        <i data-lucide="compass" class="w-4 h-4 text-sky-400"></i>
+        <span>Guia do Campeão & Câmbio</span>
+      </button>
+
+      <button data-tab-target="tab-concierge" class="tab-link px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 whitespace-nowrap text-slate-300 border border-transparent">
+        <i data-lucide="bot" class="w-4 h-4 text-emerald-400"></i>
+        <span>Concierge com IA</span>
+      </button>
+
+      <button data-tab-target="tab-gallery" class="tab-link px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 whitespace-nowrap text-slate-300 border border-transparent">
+        <i data-lucide="camera" class="w-4 h-4 text-pink-400"></i>
+        <span>Experiências Exclusivas</span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- ==========================================
+       CONTEÚDO PRINCIPAL (TABS)
+       ========================================== -->
+  <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+
+    <!-- TAB 1: CALENDÁRIO DAS ATIVIDADES E ROTEIRO -->
+    <section id="tab-itinerary" class="tab-content">
+      
+      <!-- Cabeçalho do Roteiro & Filtros -->
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-sky-400">Cronograma Oficial dos 7 Dias</span>
+            <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold">
+              <i data-lucide="check" class="w-3 h-3 inline"></i> Atualizado
+            </span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold font-serif-luxury text-white mt-1">Calendário de Atividades & Voos</h2>
+          <p class="text-xs sm:text-sm text-slate-400">
+            Programação diária estruturada por <strong>Manhã</strong>, <strong>Almoço</strong>, <strong>Tarde</strong> e <strong>Jantar</strong>, com números de voos e status de confirmação em tempo real.
+          </p>
+
+          <!-- Legenda de Status de Confirmação -->
+          <div class="flex flex-wrap items-center gap-4 mt-3 text-xs">
+            <span class="text-slate-400 font-medium">Status das Atividades:</span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full badge-confirmed font-semibold text-[11px]">
+              <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-400"></i> Confirmado (Reserva 100% Garantida)
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full badge-pending font-semibold text-[11px]">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-amber-400"></i> Em Confirmação (Ajuste Fino de Reserva)
+            </span>
+          </div>
+        </div>
+
+        <!-- Filtros Rápidos dos Dias -->
+        <div id="day-pills-filter" class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none shrink-0">
+          <!-- Gerado dinamicamente pelo app.js -->
+        </div>
+      </div>
+
+      <!-- Container dos Dias Renderizados -->
+      <div id="itinerary-container">
+        <!-- Renderizado dinamicamente pelo app.js -->
+      </div>
+
+    </section>
+
+    <!-- TAB 2: PAINEL DA ORGANIZADORA COM IA -->
+    <section id="tab-organizer" class="tab-content hidden">
+      
+      <!-- Banner de Destaque da Organizadora -->
+      <div class="glass-panel-gold rounded-2xl p-6 md:p-8 mb-8 border border-amber-500/40 relative overflow-hidden">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold mb-2">
+              <i data-lucide="shield-check" class="w-4 h-4"></i> CENTRAL OPERACIONAL INTELIGENTE
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold font-serif-luxury text-white">
+              Super-Poderes de IA para a Organizadora da Viagem
+            </h2>
+            <p class="text-sm text-slate-300 max-w-2xl mt-1 leading-relaxed">
+              Elimine o estresse do WhatsApp e planilhas confusas. Com um toque, dispare comunicados perfeitamente formatados, 
+              consulte a divisão das 3 vans executivas e gerencie as restrições alimentares do grupo.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-3 shrink-0 no-print">
+            <button onclick="window.print()" class="px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700 text-slate-200 text-xs font-semibold hover:bg-slate-800 flex items-center gap-2 transition-all">
+              <i data-lucide="printer" class="w-4 h-4 text-sky-400"></i> Imprimir / PDF
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Métricas Gerais do Grupo -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+        <div class="glass-panel rounded-xl p-4 border border-slate-800 text-center">
+          <i data-lucide="users" class="w-6 h-6 mx-auto mb-1 text-sky-400"></i>
+          <span class="text-2xl font-extrabold text-white">36</span>
+          <span class="text-xs text-slate-400 block font-medium">Participantes VIP</span>
+        </div>
+        <div class="glass-panel rounded-xl p-4 border border-slate-800 text-center">
+          <i data-lucide="bus" class="w-6 h-6 mx-auto mb-1 text-amber-400"></i>
+          <span class="text-2xl font-extrabold text-amber-300">3</span>
+          <span class="text-xs text-slate-400 block font-medium">Vans de 12 Lugares</span>
+        </div>
+        <div class="glass-panel rounded-xl p-4 border border-slate-800 text-center">
+          <i data-lucide="door-closed" class="w-6 h-6 mx-auto mb-1 text-emerald-400"></i>
+          <span class="text-2xl font-extrabold text-emerald-300">18</span>
+          <span class="text-xs text-slate-400 block font-medium">Quartos Duplos</span>
+        </div>
+        <div class="glass-panel rounded-xl p-4 border border-slate-800 text-center">
+          <i data-lucide="salad" class="w-6 h-6 mx-auto mb-1 text-rose-400"></i>
+          <span class="text-2xl font-extrabold text-rose-300">6</span>
+          <span class="text-xs text-slate-400 block font-medium">Dietas Especiais</span>
+        </div>
+      </div>
+
+      <!-- FERRAMENTA 1: GERADOR DE AVISOS WHATSAPP POR IA -->
+      <div class="glass-panel rounded-2xl p-6 md:p-8 mb-8 border border-slate-700/80">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+            <i data-lucide="message-square" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              Gerador Instantâneo de Avisos de WhatsApp com IA
+              <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold">1 Clique</span>
+            </h3>
+            <p class="text-xs text-slate-400">Selecione uma mensagem pronta ou digite um aviso livre para a IA formatar com emojis e horários.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          
+          <!-- Lado Esquerdo: Controles & Custom Prompt -->
+          <div class="lg:col-span-5 space-y-4">
+            <div>
+              <label for="wa-template-select" class="block text-xs font-semibold text-slate-300 mb-1.5">
+                Modelos Rápidos Pré-Carregados:
+              </label>
+              <select id="wa-template-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-sky-500">
+                <!-- Preenchido dinamicamente -->
+              </select>
+            </div>
+
+            <!-- Criador com IA -->
+            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+              <label for="wa-ai-custom-input" class="block text-xs font-semibold text-amber-300 flex items-center gap-1.5 mb-1.5">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+                Precisa avisar algo diferente? A IA formata para você:
+              </label>
+              <textarea id="wa-ai-custom-input" rows="3" placeholder="Ex: Avisar que o jantar de hoje foi adiado em 30 minutos e pedir que todos desçam com casaco..." class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"></textarea>
+              <button id="wa-ai-generate-btn" class="mt-2 w-full py-2 px-3 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 transition-all">
+                <i data-lucide="sparkles" class="w-4 h-4"></i> Formatar com IA
+              </button>
+            </div>
+          </div>
+
+          <!-- Lado Direito: Preview da Mensagem Formatada -->
+          <div class="lg:col-span-7 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs text-slate-400 mb-1.5">
+                <span class="font-semibold text-slate-300">Mensagem Pronta para Envio:</span>
+                <span class="text-[11px] text-emerald-400 flex items-center gap-1">
+                  <i data-lucide="smartphone" class="w-3 h-3"></i> Formatação WhatsApp
+                </span>
+              </div>
+              <textarea id="wa-message-text" rows="8" readonly class="w-full font-mono text-xs bg-slate-950/90 border border-slate-800 rounded-xl p-4 text-emerald-300 leading-relaxed focus:outline-none select-all"></textarea>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3 mt-4">
+              <button id="wa-copy-btn" class="flex-1 py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs flex items-center justify-center gap-2 border border-slate-700 transition-all">
+                <i data-lucide="copy" class="w-4 h-4 text-sky-400"></i> Copiar Mensagem
+              </button>
+              <button id="wa-open-btn" class="flex-1 py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 transition-all">
+                <i data-lucide="send" class="w-4 h-4"></i> Abrir no WhatsApp
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- FERRAMENTA 2: GESTÃO DAS 3 VANS EXECUTIVAS E PARTICIPANTES -->
+      <div class="glass-panel rounded-2xl p-6 md:p-8 mb-8 border border-slate-700/80">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+          <div>
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <i data-lucide="bus" class="w-5 h-5 text-sky-400"></i>
+              Distribuição das 3 Vans Executivas (12 Lugares Cada)
+            </h3>
+            <p class="text-xs text-slate-400">Controle de embarque, líderes de van designados, quartos e restrições alimentares.</p>
+          </div>
+
+          <!-- Filtros de Van -->
+          <div class="flex items-center gap-1.5 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
+            <button data-van-filter="all" class="px-3 py-1.5 rounded-lg font-semibold bg-sky-500 text-white transition-all">
+              Todas (36)
+            </button>
+            <button data-van-filter="1" class="px-3 py-1.5 rounded-lg font-semibold text-slate-300 hover:text-white transition-all">
+              Van 01 (12)
+            </button>
+            <button data-van-filter="2" class="px-3 py-1.5 rounded-lg font-semibold text-slate-300 hover:text-white transition-all">
+              Van 02 (12)
+            </button>
+            <button data-van-filter="3" class="px-3 py-1.5 rounded-lg font-semibold text-slate-300 hover:text-white transition-all">
+              Van 03 (12)
+            </button>
+          </div>
+        </div>
+
+        <!-- Busca e Filtro de Restrição -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+          <div class="relative flex-1 max-w-md">
+            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+            <input type="text" id="search-participant" placeholder="Buscar participante por nome, filial ou cargo..." class="w-full bg-slate-900 border border-slate-800 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+          </div>
+
+          <label class="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
+            <input type="checkbox" id="filter-dietary" class="rounded border-slate-700 bg-slate-900 text-rose-500 focus:ring-0">
+            <span class="text-rose-400 font-medium">Mostrar apenas participantes com restrição alimentar</span>
+          </label>
+        </div>
+
+        <!-- Grid de Participantes -->
+        <div id="participants-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Renderizado via app.js -->
+        </div>
+      </div>
+
+      <!-- FERRAMENTA 3: ROOMING LIST (18 QUARTOS) -->
+      <div class="glass-panel rounded-2xl p-6 md:p-8 mb-8 border border-slate-700/80">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <i data-lucide="key" class="w-5 h-5 text-amber-400"></i>
+              Rooming List Oficial - Address Sky View Hotel
+            </h3>
+            <p class="text-xs text-slate-400">18 quartos duplos distribuídos por afinidade comercial e filiais de Santa Catarina.</p>
+          </div>
+        </div>
+
+        <div id="rooming-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Renderizado via app.js -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- TAB 3: GUIA DO CAMPEÃO & CÂMBIO -->
+    <section id="tab-guide" class="tab-content hidden">
+      
+      <div class="mb-8">
+        <span class="text-xs font-bold uppercase tracking-wider text-sky-400">Dicas Práticas & Ferramentas</span>
+        <h2 class="text-2xl sm:text-3xl font-bold font-serif-luxury text-white">Guia de Viagem & Dubai Essentials</h2>
+        <p class="text-xs sm:text-sm text-slate-400">Calculadora de câmbio em tempo real, regras culturais e checklist de bagagem.</p>
+      </div>
+
+      <!-- Calculadora de Câmbio & Eletricidade -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
+        
+        <!-- Calculadora de Câmbio -->
+        <div class="lg:col-span-7 glass-panel rounded-2xl p-6 md:p-8 border border-slate-700/80">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <i data-lucide="calculator" class="w-5 h-5 text-amber-400"></i>
+              Conversor Inteligente de Moedas
+            </h3>
+            <span class="text-[11px] text-slate-400 font-mono">1 AED ≈ R$ 1,58 | 1 USD = 3.67 AED</span>
+          </div>
+
+          <p class="text-xs text-slate-300 mb-6">
+            Em Dubai, todos os preços estão em <strong>Dirham (AED)</strong>. Digite qualquer valor em um dos campos para converter instantaneamente:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="bg-slate-900/90 rounded-xl p-4 border border-slate-800">
+              <label for="calc-aed" class="text-xs text-amber-400 font-bold block mb-1">🇦🇪 Dirham (AED)</label>
+              <input type="number" id="calc-aed" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-base font-mono font-bold text-white focus:outline-none focus:border-amber-400" placeholder="0.00">
+              <span class="text-[10px] text-slate-500 mt-1 block">Moeda oficial de Dubai</span>
+            </div>
+
+            <div class="bg-slate-900/90 rounded-xl p-4 border border-slate-800">
+              <label for="calc-brl" class="text-xs text-emerald-400 font-bold block mb-1">🇧🇷 Real (BRL)</label>
+              <input type="number" id="calc-brl" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-base font-mono font-bold text-white focus:outline-none focus:border-emerald-400" placeholder="0.00">
+              <span class="text-[10px] text-slate-500 mt-1 block">Cotação turismo estimada</span>
+            </div>
+
+            <div class="bg-slate-900/90 rounded-xl p-4 border border-slate-800">
+              <label for="calc-usd" class="text-xs text-sky-400 font-bold block mb-1">🇺🇸 Dólar (USD)</label>
+              <input type="number" id="calc-usd" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-base font-mono font-bold text-white focus:outline-none focus:border-sky-400" placeholder="0.00">
+              <span class="text-[10px] text-slate-500 mt-1 block">Câmbio fixo oficial</span>
+            </div>
+          </div>
+
+          <div class="mt-4 p-3 rounded-xl bg-amber-950/30 border border-amber-500/20 text-xs text-amber-300 flex items-start gap-2.5">
+            <i data-lucide="info" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+            <div>
+              <strong>Dica de Compras:</strong> Cartões globais (Wise, Nomad, C6) e Apple Pay são aceitos em praticamente 100% dos locais em Dubai, inclusive em táxis e barracas de especiarias!
+            </div>
+          </div>
+        </div>
+
+        <!-- Tomadas & Conectividade -->
+        <div class="lg:col-span-5 glass-panel rounded-2xl p-6 md:p-8 border border-slate-700/80 flex flex-col justify-between">
+          <div>
+            <h3 class="text-base font-bold text-white flex items-center gap-2 mb-3">
+              <i data-lucide="zap" class="w-5 h-5 text-sky-400"></i>
+              Tomadas & Voltagem (Tipo G)
+            </h3>
+            
+            <p class="text-xs text-slate-300 mb-4 leading-relaxed">
+              A voltagem em Dubai é <strong>230V</strong> (50Hz). O padrão oficial é o <strong>Plugue Tipo G</strong> (3 pinos retangulares, padrão britânico).
+            </p>
+
+            <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg bg-sky-950 border border-sky-600/40 flex items-center justify-center text-sky-300 font-bold text-xl shrink-0">
+                🔌
+              </div>
+              <div class="text-xs text-slate-300">
+                <strong class="text-white block">Adaptador Tipo G Necessário:</strong>
+                O hotel possui portas USB nos quartos, mas recomendamos trazer 1 adaptador universal para carregar notebook e acessórios.
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+            <span>📶 eSIM Internacional: Incluso no Kit</span>
+            <span class="text-emerald-400 font-semibold">Internet 5G Ilimitada</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Leis & Costumes + Checklist de Bagagem -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
+        
+        <!-- Leis & Etiqueta Cultural -->
+        <div class="lg:col-span-7 glass-panel rounded-2xl p-6 md:p-8 border border-slate-700/80">
+          <h3 class="text-base font-bold text-white flex items-center gap-2 mb-4">
+            <i data-lucide="scale" class="w-5 h-5 text-amber-400"></i>
+            Regras de Ouro & Respeito Cultural em Dubai
+          </h3>
+
+          <div class="space-y-3 text-xs">
+            <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-start gap-3">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+              <div>
+                <strong class="text-white block">Vestimenta em Locais Públicos:</strong>
+                Roupas casuais são amplamente aceitas em shoppings e restaurantes. Evite apenas trajes de banho fora de praias/piscinas e decotes excessivos em locais tradicionais.
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-start gap-3">
+              <i data-lucide="wine" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+              <div>
+                <strong class="text-white block">Bebidas Alcoólicas:</strong>
+                Permitidas para turistas maiores de 21 anos dentro de hotéis, clubes licenciados e no nosso Iate. Proibido consumo em vias públicas.
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-start gap-3">
+              <i data-lucide="camera" class="w-4 h-4 text-sky-400 shrink-0 mt-0.5"></i>
+              <div>
+                <strong class="text-white block">Fotografias:</strong>
+                Fotografar os monumentos, prédios e paisagens é incentivado! Evite apenas tirar fotos diretas de pessoas locais (especialmente mulheres árabes) sem autorização prévia.
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-start gap-3">
+              <i data-lucide="pill" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i>
+              <div>
+                <strong class="text-white block">Medicamentos Controlados:</strong>
+                Remédios de uso contínuo devem vir na caixa original com a receita médica nominal em português ou inglês.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checklist de Bagagem Interativo -->
+        <div class="lg:col-span-5 glass-panel rounded-2xl p-6 md:p-8 border border-slate-700/80">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <i data-lucide="check-square" class="w-5 h-5 text-emerald-400"></i>
+              Checklist dos Campeões
+            </h3>
+          </div>
+          <p id="checklist-progress-text" class="text-xs text-sky-400 mb-2 font-medium">0 de 6 itens prontos (0%)</p>
+          
+          <div class="w-full h-1.5 bg-slate-800 rounded-full mb-4 overflow-hidden">
+            <div id="checklist-progress-bar" class="h-full bg-emerald-500 transition-all duration-300" style="width: 0%"></div>
+          </div>
+
+          <div class="space-y-2 text-xs">
+            <label class="checklist-item flex items-center gap-3 p-2.5 rounded-lg bg-slate-900/70 border border-slate-800 cursor-pointer hover:bg-slate-800">
+              <input type="checkbox" class="rounded border-slate-700 bg-slate-950 text-emerald-500 focus:ring-0">
+              <span class="text-slate-200">Passaporte com validade de 6+ meses</span>
+            </label>
+            <label class="checklist-item flex items-center gap-3 p-2.5 rounded-lg bg-slate-900/70 border border-slate-800 cursor-pointer hover:bg-slate-800">
+              <input type="checkbox" class="rounded border-slate-700 bg-slate-950 text-emerald-500 focus:ring-0">
+              <span class="text-slate-200">Traje de Gala / Black Tie para o Dia 5</span>
+            </label>
+            <label class="checklist-item flex items-center gap-3 p-2.5 rounded-lg bg-slate-900/70 border border-slate-800 cursor-pointer hover:bg-slate-800">
+              <input type="checkbox" class="rounded border-slate-700 bg-slate-950 text-emerald-500 focus:ring-0">
+              <span class="text-slate-200">Traje White & Gold para o Yacht Party</span>
+            </label>
+            <label class="checklist-item flex items-center gap-3 p-2.5 rounded-lg bg-slate-900/70 border border-slate-800 cursor-pointer hover:bg-slate-800">
+              <input type="checkbox" class="rounded border-slate-700 bg-slate-950 text-emerald-500 focus:ring-0">
+              <span class="text-slate-200">Casaco leve para a noite no deserto</span>
+            </label>
+            <label class="checklist-item flex items-center gap-3 p-2.5 rounded-lg bg-slate-900/70 border border-slate-800 cursor-pointer hover:bg-slate-800">
+              <input type="checkbox" class="rounded border-slate-700 bg-slate-950 text-emerald-500 focus:ring-0">
+              <span class="text-slate-200">Adaptador de tomada padrão britânico (Tipo G)</span>
+            </label>
+            <label class="checklist-item flex items-center gap-3 p-2.5 rounded-lg bg-slate-900/70 border border-slate-800 cursor-pointer hover:bg-slate-800">
+              <input type="checkbox" class="rounded border-slate-700 bg-slate-950 text-emerald-500 focus:ring-0">
+              <span class="text-slate-200">Cartão internacional desbloqueado para o exterior</span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- TAB 4: CONCIERGE COM IA INTERATIVO -->
+    <section id="tab-concierge" class="tab-content hidden">
+      
+      <div class="mb-6">
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Atendimento 24h</span>
+        <h2 class="text-2xl sm:text-3xl font-bold font-serif-luxury text-white">Concierge Virtual com IA</h2>
+        <p class="text-xs sm:text-sm text-slate-400">
+          Tire dúvidas instantâneas sobre Dubai, compras, regras culturais e horários do nosso grupo.
+        </p>
+      </div>
+
+      <div class="glass-panel rounded-2xl border border-slate-700/80 overflow-hidden flex flex-col h-[650px] shadow-2xl">
+        
+        <!-- Header do Chat -->
+        <div class="p-4 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="relative">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-sky-500 to-amber-400 flex items-center justify-center text-slate-950 font-bold text-sm">
+                🇦🇪
+              </div>
+              <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-slate-900"></span>
+            </div>
+            <div>
+              <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                Concierge Especialista em Dubai
+                <span class="px-2 py-0.5 rounded text-[10px] bg-sky-950 text-sky-300 border border-sky-800 font-mono">IA Ativa</span>
+              </h3>
+              <p class="text-[11px] text-slate-400">Treinado para o grupo dos 36 campeões de vendas</p>
+            </div>
+          </div>
+
+          <div class="text-xs text-slate-400 font-mono hidden sm:block">
+            Online • Respostas Imediatas
+          </div>
+        </div>
+
+        <!-- Sugestões de Perguntas Rápidas (Chips) -->
+        <div class="p-3 bg-slate-950/60 border-b border-slate-800/80 flex items-center gap-2 overflow-x-auto scrollbar-none text-xs">
+          <span class="text-[11px] text-slate-500 uppercase font-semibold shrink-0">Sugestões:</span>
+          <button data-chat-chip="Preciso de visto para entrar em Dubai?" class="px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 whitespace-nowrap transition-colors">
+            🛂 Preciso de visto?
+          </button>
+          <button data-chat-chip="Como funciona o Tax Free para compras?" class="px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 whitespace-nowrap transition-colors">
+            🛍️ Compras & Tax Free
+          </button>
+          <button data-chat-chip="Qual o dress code recomendado em shoppings e restaurantes?" class="px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 whitespace-nowrap transition-colors">
+            👗 Dress Code & Roupas
+          </button>
+          <button data-chat-chip="É permitido consumir bebidas alcoólicas?" class="px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 whitespace-nowrap transition-colors">
+            🥂 Bebidas alcoólicas
+          </button>
+          <button data-chat-chip="Qual a tomada e voltagem em Dubai?" class="px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 whitespace-nowrap transition-colors">
+            🔌 Tomadas & Voltagem
+          </button>
+        </div>
+
+        <!-- Área de Mensagens com Scroll -->
+        <div id="chat-messages" class="flex-1 p-4 md:p-6 overflow-y-auto space-y-4">
+          
+          <!-- Mensagem de Boas-Vindas da IA -->
+          <div class="flex gap-3 justify-start">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-sky-500 to-amber-400 p-0.5 shrink-0">
+              <div class="w-full h-full bg-slate-900 rounded-full flex items-center justify-center text-xs font-bold text-amber-300">
+                IA
+              </div>
+            </div>
+            <div class="chat-bubble-ai max-w-[85%] md:max-w-[75%] p-4 text-xs md:text-sm leading-relaxed shadow-lg">
+              <p class="font-bold text-amber-300 mb-1">Marhaban! Bem-vindo ao Concierge Oficial dos Campeões! 🇦🇪✨</p>
+              <p>
+                Estou aqui para responder qualquer dúvida sobre a nossa viagem na próxima semana: costumes locais, 
+                câmbio, lojas no Dubai Mall, tomadas, bebidas, dicas para o Safari no Deserto ou detalhes dos nossos transfers.
+              </p>
+              <p class="mt-2 text-slate-300 text-[11px]">
+                💡 <em>Dica: Você pode clicar em um dos botões rápidos acima ou digitar sua pergunta abaixo!</em>
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Caixa de Entrada -->
+        <div class="p-3 md:p-4 bg-slate-900 border-t border-slate-800 flex items-center gap-2">
+          <input type="text" id="chat-input" placeholder="Digite sua pergunta sobre Dubai ou a logística do grupo..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-xs md:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+          <button id="chat-send-btn" class="py-3 px-5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-bold text-xs md:text-sm flex items-center gap-1.5 shadow-lg shadow-sky-500/20 transition-all">
+            <span>Enviar</span>
+            <i data-lucide="send" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- TAB 5: GALERIA DAS EXPERIÊNCIAS -->
+    <section id="tab-gallery" class="tab-content hidden">
+      
+      <div class="mb-8">
+        <span class="text-xs font-bold uppercase tracking-wider text-amber-400">Highlights Exclusivos</span>
+        <h2 class="text-2xl sm:text-3xl font-bold font-serif-luxury text-white">Experiências Monumentais dos Campeões</h2>
+        <p class="text-xs sm:text-sm text-slate-400">Uma prévia visual do que aguarda os 36 vencedores nos 5 dias de Dubai.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Card 1: Burj Khalifa -->
+        <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800 group hover:border-amber-500/40 transition-all">
+          <div class="h-48 bg-gradient-to-tr from-slate-900 via-sky-950 to-blue-900 flex items-center justify-center relative overflow-hidden">
+            <span class="text-6xl">🏙️</span>
+            <div class="absolute bottom-3 left-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-amber-300 text-[10px] font-bold">
+              828 Metros de Altura
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="text-base font-bold text-white mb-1">At The Top - Burj Khalifa</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-3">
+              Acesso Fast Track VIP aos andares 124 e 125 do edifício mais alto do planeta, com visão deslumbrante de toda a península arábica.
+            </p>
+            <span class="text-[11px] text-sky-400 font-semibold">Dia 5 • 10:00 da manhã</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Safari 4x4 -->
+        <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800 group hover:border-amber-500/40 transition-all">
+          <div class="h-48 bg-gradient-to-tr from-amber-950 via-orange-950 to-amber-900 flex items-center justify-center relative overflow-hidden">
+            <span class="text-6xl">🏜️</span>
+            <div class="absolute bottom-3 left-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-amber-300 text-[10px] font-bold">
+              Expedição VIP 4x4
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="text-base font-bold text-white mb-1">Safari nas Dunas Vermelhas & Noite Beduína</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-3">
+              Rally nas gigantescas dunas de Lahbab, sandboard, pôr do sol inesquecível, falcoaria e banquete nobre sob as estrelas do deserto.
+            </p>
+            <span class="text-[11px] text-amber-400 font-semibold">Dia 3 • 14:30 em diante</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Yacht Party -->
+        <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800 group hover:border-amber-500/40 transition-all">
+          <div class="h-48 bg-gradient-to-tr from-blue-950 via-cyan-950 to-sky-900 flex items-center justify-center relative overflow-hidden">
+            <span class="text-6xl">🛥️</span>
+            <div class="absolute bottom-3 left-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-sky-300 text-[10px] font-bold">
+              Iate Privado de 85 Pés
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="text-base font-bold text-white mb-1">Sunset Yacht Party na Dubai Marina</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-3">
+              Cruzeiro exclusivo contornando a Ain Dubai e o arquipélago Palm Jumeirah com DJ a bordo, mocktails e o dress code White & Gold.
+            </p>
+            <span class="text-[11px] text-sky-400 font-semibold">Dia 4 • 14:00 às 18:30</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Museu do Futuro -->
+        <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800 group hover:border-amber-500/40 transition-all">
+          <div class="h-48 bg-gradient-to-tr from-slate-900 via-emerald-950 to-slate-900 flex items-center justify-center relative overflow-hidden">
+            <span class="text-6xl">🏛️</span>
+            <div class="absolute bottom-3 left-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-emerald-300 text-[10px] font-bold">
+              Arquitetura Futurista
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="text-base font-bold text-white mb-1">Museum of the Future</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-3">
+              Imersão sensorial no edifício com caligrafia em relevo de Sheik Mohammed, explorando a ciência, IA e o futuro da humanidade em 2071.
+            </p>
+            <span class="text-[11px] text-emerald-400 font-semibold">Dia 2 • 16:00 da tarde</span>
+          </div>
+        </div>
+
+        <!-- Card 5: Grande Noite de Gala -->
+        <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800 group hover:border-amber-500/40 transition-all">
+          <div class="h-48 bg-gradient-to-tr from-amber-950 via-yellow-950 to-slate-950 flex items-center justify-center relative overflow-hidden">
+            <span class="text-6xl">🏆</span>
+            <div class="absolute bottom-3 left-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-amber-300 text-[10px] font-bold">
+              Black Tie & Troféus de Ouro
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="text-base font-bold text-white mb-1">Grande Noite de Gala & Premiação</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-3">
+              A consagração anual dos 36 melhores vendedores no Salão Ballroom Imperial do Address Hotel com menu gourmet e entrega de homenagens.
+            </p>
+            <span class="text-[11px] text-amber-400 font-semibold">Dia 5 • 19:30 em diante</span>
+          </div>
+        </div>
+
+        <!-- Card 6: Dubai Creek & Souks -->
+        <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800 group hover:border-amber-500/40 transition-all">
+          <div class="h-48 bg-gradient-to-tr from-amber-950 via-slate-900 to-amber-950 flex items-center justify-center relative overflow-hidden">
+            <span class="text-6xl">⛵</span>
+            <div class="absolute bottom-3 left-3 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-amber-300 text-[10px] font-bold">
+              Barcos Abra Tradicionais
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="text-base font-bold text-white mb-1">Dubai Antiga & Souks do Ouro</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-3">
+              Travessia tradicional em barcos de madeira pelo Creek, compras de especiarias e jóias e almoço autêntico no Arabian Tea House.
+            </p>
+            <span class="text-[11px] text-amber-400 font-semibold">Dia 2 • 09:45 da manhã</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       RODAPÉ CORPORATIVO
+       ========================================== -->
+  <footer class="bg-slate-950 border-t border-slate-800/80 py-8 px-4 text-xs text-slate-400 text-center no-print">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      
+      <div class="flex items-center gap-2">
+        <span class="w-6 h-6 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold">🇦🇪</span>
+        <span class="font-semibold text-slate-300">Missão Dubai 2026 • Convenção dos Melhores Vendedores</span>
+      </div>
+
+      <div>
+        Orgulhosamente planejado para a equipe de 36 campeões • Partida de Florianópolis (FLN)
+      </div>
+
+      <div class="text-slate-500">
+        Desenvolvido com apoio de Inteligência Artificial
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
